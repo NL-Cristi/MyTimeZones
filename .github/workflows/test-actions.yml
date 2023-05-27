@@ -10,7 +10,9 @@ name: Test Build Python Exe
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build_linux:
