@@ -2,10 +2,12 @@ import json
 import tkinter
 from tkinter import ttk
 from tkinter.messagebox import showerror, showwarning, showinfo
-
 import pytz
 from ttkwidgets.autocomplete import AutocompleteCombobox
+from glob import glob
 
+
+appfilename = glob("*timezones*.json")[0]
 class AddTime_Page:
     def __init__(self, parent, window):
         self.parent = parent
@@ -49,7 +51,7 @@ class AddTime_Page:
         self.frame.pack()
 
     def load_data(self):
-        with open('timezones.json') as f:
+        with open(appfilename) as f:
             self.data = json.load(f)
         self.local_tz_data = self.data['local']
         self.other_tzs_data = self.data['others']
@@ -84,7 +86,7 @@ class AddTime_Page:
             self.other_tzs_data.append({"zone": new_name, "description": new_description})
 
             # Save back to the JSON file
-            with open('timezones.json', 'w') as f:
+            with open(appfilename, 'w') as f:
                 json.dump({"local": self.local_tz_data, "others": self.other_tzs_data}, f)
 
             # Clear entry fields
@@ -127,7 +129,7 @@ class AddTime_Page:
                     break
 
         # Save back to the JSON file
-        with open('timezones.json', 'w') as f:
+        with open(appfilename, 'w') as f:
             json.dump({"local": self.local_tz_data, "others": self.other_tzs_data}, f)
 
         # Clear entry fields
@@ -153,7 +155,7 @@ class AddTime_Page:
         self.other_tzs_data = [tz for tz in self.other_tzs_data if tz["zone"] != selected_values[0]]
 
         # Save back to the JSON file
-        with open('timezones.json', 'w') as f:
+        with open(appfilename, 'w') as f:
             json.dump({"local": self.local_tz_data, "others": self.other_tzs_data}, f)
 
         # Update the TreeView

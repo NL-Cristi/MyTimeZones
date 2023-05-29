@@ -1,6 +1,6 @@
 from tkinter import Menu
-from AddTime import AddTime_Page
-from ShowTime import ShowTime_Page
+from AddTime import *
+from ShowTime import *
 
 class maingui:
     def __init__(self, root, title, geometry):

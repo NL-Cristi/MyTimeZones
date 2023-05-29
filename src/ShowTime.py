@@ -5,7 +5,10 @@ from tkinter import ttk
 from pytz import timezone
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
+from glob import glob
 
+
+appfilename = glob("*timezones*.json")[0]
 
 class ShowTime_Page:
     def __init__(self, parent, window):
@@ -33,7 +36,8 @@ class ShowTime_Page:
         self.frame.pack()
 
     def load_data(self):
-        with open('timezones.json') as f:
+
+        with open(appfilename) as f:
             self.data = json.load(f)
 
         self.local_tz_data = self.data['local']
